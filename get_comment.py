@@ -1,5 +1,6 @@
 import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 #取得間隔
 COLLECT_INTERVAL = 10
@@ -44,6 +45,9 @@ def update_comment(contents):
             except Exception as e:
                 print(e)
 
+
+#options = Options()
+#options.add_argument('--headless')
 
 
 driver = webdriver.Chrome(driver_path)
