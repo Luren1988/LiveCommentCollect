@@ -7,7 +7,7 @@ COLLECT_INTERVAL = 10
 #driverのパス
 driver_path = 'driver/chromedriver'
 #取得するyoutubeのライブ
-target_url = 'https://www.youtube.com/watch?v=3Wxnjj88v64'
+target_url = ''
 #結果ストレージ [{id:{"message":message,"timestamp":timestamp,"author":author}},....]
 dump_list = []
 
@@ -46,6 +46,7 @@ def update_comment(contents):
                 print(e)
 
 
+#[TODO]:headless chrome 対応 
 #options = Options()
 #options.add_argument('--headless')
 
