@@ -57,10 +57,11 @@ class CommentCollect:
                         author = self.__GetText(content,'author-name')
                         self.dump_list.append({unique_id:{"timestamp":timestamp,"author":author,"message":message}})
 
-                        print(timestamp + " - " +  author + " - " + message  )
+                        #print(timestamp + " - " +  author + " - " + message  )
 
                 except Exception as e:
                     print(e)
+            
     
     def CheckComment(self):
         while True:
@@ -69,6 +70,14 @@ class CommentCollect:
                 if len(items) > 0 :
                     contents = items[1].find_elements_by_tag_name('yt-live-chat-text-message-renderer')
                     self.UpdateComment(contents)
+
+                    lastcomment = self.dump_list[-1]
+                    for key in lastcomment.keys():
+                        name = lastcomment[key]["author"]
+                        talk = lastcomment[key]["message"]
+                        answer = self.conversation_generate(name,talk)
+                        print(answer)
+
                 else:
                     print('no element found')
 
@@ -77,10 +86,17 @@ class CommentCollect:
 
             time.sleep(self.COLLECT_INTERVAL)
     
+    def conversation_generate(self,name,talk):
+
+        return f'{name}さん、こんにちは'    
+
+
+
+    
 
 if __name__=='__main__':
     CC = CommentCollect()
-    CC.TARGET_URL = 'https://www.youtube.com/watch?v=RDiarjPxQiQ'
+    CC.TARGET_URL = 'https://www.youtube.com/watch?v=Eq8tg0kt44Y'
     
     CC.Prepare()
     CC.CheckComment()
